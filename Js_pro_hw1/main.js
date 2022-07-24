@@ -39,37 +39,29 @@
       myNumber.toString(16) // fb
 
 */
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-var r = getRandomIntInclusive(0, 255);
-var g = getRandomIntInclusive(0, 255);
-var b = getRandomIntInclusive(0, 255);
-document.querySelector("colorClass").innerHTML =
-  document.body.style.background = "rgb(r, g, b)";
-
-var element = document.createElement("div");
-element.classList.add("colorClass");
-element.style.height = "500px";
-element.style.width = "500px";
-element.style.display = "flex";
-element.style.margin = "0 auto";
-body.appendChild(element);
-
-var elementButton = document.createElement("button");
-
-function changeColor(event) {
-  var r = getRandomIntInclusive(0, 255);
-  var g = getRandomIntInclusive(0, 255);
-  var b = getRandomIntInclusive(0, 255);
-  document.querySelector("colorClass").innerHTML =
-    document.body.style.background = "rgb(r, g, b)";
-}
 
 // var myNumber = getRandomIntInclusive(0, 255);
 // var newMyNumber = myNumber.toString(16);
 // console.log(newMyNumber);
 // document.body.style.background = '#RRGGBB';
 
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function changeColor() {
+  var r = getRandomIntInclusive(0, 255);
+  var g = getRandomIntInclusive(0, 255);
+  var b = getRandomIntInclusive(0, 255);
+  document.body.style.width = '100vw';
+  document.body.style.height = '100vh';
+  document.body.style.background = 'rgb(' + r + ', ' + g + ' , ' + b + ')';
+}
+changeColor();
+
+var elementButton = document.createElement("button");
+elementButton.innerHTML = 'Click me';
+elementButton.addEventListener('click', changeColor, false);
+document.body.appendChild(elementButton);
