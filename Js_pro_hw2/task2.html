@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <title>ITEA-JS ADVANCED - LESSON 2: CLASSWORK 2</title>
   <link rel="stylesheet" href="css/style.min.css" />
 </head>
+
 <body>
   <div class="wrap">
     <div class="testBlock hover">
       <button class="iButton" id="mouseHover">1. Hover!</button>
       <ul id="hoverResult" class="resultBlock">
-        <li class="red">Hovered!</li>
+        <!-- <li class="red">Hovered!</li>
         <li class="blue">Hovered!</li>
         <li class="orange">Hovered!</li>
-        <li class="purple">Hovered!</li>
+        <li class="purple">Hovered!</li> -->
       </ul>
     </div>
 
@@ -80,37 +82,111 @@
 
     */
 
+    // 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     var mouseHover = document.getElementById('mouseHover');
     var mouseClick = document.getElementById('mouseClick');
     var mouseLight = document.getElementById('mouseLight');
     var keyboardButton = document.getElementById('keyboardButton');
-    var deletli = document.querySelectorAll("li");
-    console.log(deletli);
-    Element.parentnode.removeChild(deletli);
-    mouseHover.onmouseenter = function(){
-      var hover = document.querySelectorAll("li");
-      var color = hover.className;
-      console.log(hover);
-      console.log(color);
-      console.log('hover');
-    }
+    var arrColors = ['red', 'blue', 'green', 'orange', 'purple'];
 
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    // var deletli = document.querySelectorAll("li");
+    // console.log(deletli);
+    // Element.parentnode.removeChild(deletli);
+    mouseHover.onmouseenter = function () {
+      var hoverLi = document.createElement("li");
+      hoverLi.innerText = 'hovered!';
+      var arrRandom = arrColors[getRandomIntInclusive(0, arrColors.length - 1)]
+      console.log(arrRandom);
+      hoverLi.classList.add(arrRandom);
+      document.getElementById('hoverResult').appendChild(hoverLi);
+    }
+    // 2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     var clickIndex = 0;
     var direction = true;
+    var arrClassesDelete = ['six', 'two', 'three', 'four', 'one', 'five'];
+    var arrClassesAdd = ['one', 'two', 'three', 'four', 'five', 'six'];
 
-    mouseClick.onclick = function(){
-        console.log('click');
+    mouseClick.onclick = function (event) {
+      var el = event.target.nextElementSibling;
+
+      if (direction) {
+        for (var item of arrClassesDelete) {
+          if (el.matches('.' + item)) {
+            el.classList.remove(item);
+            if (arrClassesDelete[arrClassesDelete.length - 1] == item) {
+              direction = !direction;
+            }
+            return;
+          }
+        }
+      } else {
+        for (var item of arrClassesAdd) {
+          if (!el.matches('.' + item)) {
+            el.classList.add(item);
+            if (arrClassesAdd[arrClassesAdd.length - 1] == item) {
+              direction = !direction;
+            }
+            return;
+          }
+        }
+      }
     }
 
 
-    mouseLight.onclick = function(e){
-        console.log('light');
-    }
+    // 3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    var arrLights = ['Off', 'Red', 'Yellow', 'Green'];
+    var index = 0;
 
-    var counter = 0;
-    keyboardButton.onkeydown = function(){
-        console.log('keydown');
+    mouseLight.onclick = function (e) {
+      if (index === arrLights.length) {
+        index = 0;
+      }
+      var light = arrLights[index];
+      e.target.nextElementSibling.innerText = light;
+      index++;
+    }
+    // 4!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    var index = 0;
+    keyboardButton.onkeydown = function (e) {
+      var el = e.target.nextElementSibling;
+      el.innerText = index;
+      var arrCliks = index.toString().split('');
+
+      var arrNumbrs = arrCliks.map(function (num) {
+        switch (num) {
+          case '0':
+            return num = 'zero';
+          case '1':
+            return num = 'one';
+          case '2':
+            return num = 'two';
+          case '3':
+            return num = 'three';
+          case '4':
+            return num = 'four';
+          case '5':
+            return num = 'five';
+          case '6':
+            return num = 'six';
+          case '7':
+            return num = 'seven';
+          case '8':
+            return num = 'eight';
+          case '9':
+            return num = 'nine';
+          default:
+            return num = 'other number';
+        }
+      });
+      el.className = 'resultBlock key-colors ' + arrNumbrs.join(' ');
+      index++;
     }
   </script>
 </body>
+
 </html>
