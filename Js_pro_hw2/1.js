@@ -40,35 +40,23 @@
 */
 
 var buttons = document.querySelectorAll(".showButton");
-console.log(buttons);
 var ArrButtons = Array.from(document.querySelectorAll(".tab"));
-console.(ArrButtons);
-buttons.onclick = function (e) {
-  console.log(buttons);
-  e.target.classList.add("active");
-  getСomparison(e.target.dataset.tab);
-  hideAllTabs();
-}
-
-// buttons.forEach(btn => {
-//   btn.addEventListener('click', function (e) {
-//     buttons.forEach(function (btn) {
-//       btn.classList.remove('active-btn');
-//     })
-//     e.target.classList.add('active-btn');
-//     hideAllTabs();
-//     getTabByDataTab(e.target.dataset.tab).classList.add('active');
-//   })
-// })
-
+buttons.forEach(btn => {
+  btn.onclick = function (e) {
+    hideAllTabs();
+    getСomparison(e.target.dataset.tab).classList.add('active');
+  }
+});
+// hideAllTabs();
 function getСomparison(tabId) {
-  return ArrButtons.find(function(tab) {
+  return ArrButtons.find(function (tab) {
     return tab.dataset.tab == tabId
-  })
+  });
 }
 
-function hideAllTabs(){
-  ArrButtons.forEach(function(tab){
+function hideAllTabs() {
+  ArrButtons.forEach(function (tab) {
     tab.classList.remove('active');
-  })
+  });
 }
+

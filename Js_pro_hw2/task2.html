@@ -12,10 +12,10 @@
     <div class="testBlock hover">
       <button class="iButton" id="mouseHover">1. Hover!</button>
       <ul id="hoverResult" class="resultBlock">
-        <!-- <li class="red">Hovered!</li>
+        <li class="red">Hovered!</li>
         <li class="blue">Hovered!</li>
         <li class="orange">Hovered!</li>
-        <li class="purple">Hovered!</li> -->
+        <li class="purple">Hovered!</li>
       </ul>
     </div>
 
@@ -38,13 +38,11 @@
 
   <script>
     /*
-
       Попрацюємо трохи з івентами:
       onmouseenter
       onclick
       oncontextmenu
       onkeydown
-
       Завдання:
       На кожну з конопок призначити дію, яка виконуватиме таку дію:
       1.На ховер(onmouseenter) повісити обробник який буде при кожному наведенні
@@ -52,34 +50,23 @@
         у якого буде один із наступних класів:
         red blue green orange purple
         
-
       2.На кнопку кліка (onclick) повісити обробник який видалятиме класи з
         блоку з результатом по черзі у такому порядку:
-
         six > two > three > four > one > five
-
         після того, як блок виявиться порожнім, додати їх у порядку зростання
-
         one > two > three ... > six
-
       3. На кнопку кліка (Light) повісити обробник, який виводитиме в
       блок з результатом (lightResult) почергово один із кольорів світлофора:
       Цикл: Off -> Red -> Yellow -> Green -> Off
-
       4. На кнопку з обробником натискання (onkeydown) повісити обробник який буде:
-
         - Виводити в блок з результатом (keyboardResult) число натискань на будь-яку клавішу клавіатури.
         - Давати блоку (keyboardResult) класи, які відповідають числу кліків:
-
         Н-р:
         1 -> one
         3 -> three
         5 -> five
         11 -> one one
         115 -> one one five
-
-
-
     */
 
     // 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -136,8 +123,6 @@
         }
       }
     }
-
-
     // 3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     var arrLights = ['Off', 'Red', 'Yellow', 'Green'];
     var index = 0;
