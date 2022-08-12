@@ -1,92 +1,130 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Task 3</title>
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <div class="wrap" id="wrap">
-      <h1>Переключение слайдера</h1>
-      <div class="roadMap__container yellow">
-        <button class="navButton" data-direction="<"> Prev </button>
-        <div class="roadMap">
-          <div class="roadMapPoint" data-id="1"></div>
-          <div class="roadMapPoint ball" data-id="2"></div>
-          <div class="roadMapPoint" data-id="3"></div>
-          <div class="roadMapPoint" data-id="4"></div>
-          <div class="roadMapPoint" data-id="5"></div>
-          <div class="roadMapPoint" data-id="6"></div>
-          <div class="roadMapPoint" data-id="7"></div>
-          <div class="roadMapPoint" data-id="8"></div>
-        </div>
-        <button class="navButton" data-direction=">"> Next </button>
-      </div>
 
-      <div class="roadMap__container red">
-        <button class="navButton" data-direction="<"> Prev </button>
-        <div class="roadMap">
-          <div class="roadMapPoint" data-id="1"></div>
-          <div class="roadMapPoint" data-id="2"></div>
-          <div class="roadMapPoint ball" data-id="3"></div>
-          <div class="roadMapPoint" data-id="4"></div>
-        </div>
-        <button class="navButton" data-direction=">"> Next </button>
-      </div>
+<head>
+  <meta charset="utf-8" />
+  <title>Task 3</title>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-      <div class="roadMap__container blue">
-        <button class="navButton" data-direction="<"> Prev </button>
-        <div class="roadMap">
-          <div class="roadMapPoint" data-id="1"></div>
-          <div class="roadMapPoint ball" data-id="2"></div>
-          <div class="roadMapPoint" data-id="3"></div>
-          <div class="roadMapPoint" data-id="4"></div>
-        </div>
-        <button class="navButton" data-direction=">"> Next </button>
+<body>
+  <div class="wrap" id="wrap">
+    <h1>Переключение слайдера</h1>
+    <div class="roadMap__container yellow">
+      <button class="navButton" data-direction="<"> Prev </button>
+      <div class="roadMap">
+        <div class="roadMapPoint" data-id="1"></div>
+        <div class="roadMapPoint ball" data-id="2"></div>
+        <div class="roadMapPoint" data-id="3"></div>
+        <div class="roadMapPoint" data-id="4"></div>
+        <div class="roadMapPoint" data-id="5"></div>
+        <div class="roadMapPoint" data-id="6"></div>
+        <div class="roadMapPoint" data-id="7"></div>
+        <div class="roadMapPoint" data-id="8"></div>
       </div>
-      
-      <div class="roadMap__container red">
-          <button class="navButton" data-direction="<"> Prev </button>
-          <div class="roadMap">
-            <div class="roadMapPoint" data-id="1"></div>
-            <div class="roadMapPoint" data-id="2"></div>
-            <div class="roadMapPoint ball" data-id="3"></div>
-            <div class="roadMapPoint" data-id="4"></div>
-          </div>
-          <button class="navButton" data-direction=">"> Next </button>
-        </div>
-  
-        <div class="roadMap__container blue">
-          <button class="navButton" data-direction="<"> Prev </button>
-          <div class="roadMap">
-            <div class="roadMapPoint" data-id="1"></div>
-            <div class="roadMapPoint ball" data-id="2"></div>
-            <div class="roadMapPoint" data-id="3"></div>
-            <div class="roadMapPoint" data-id="4"></div>
-          </div>
-          <button class="navButton" data-direction=">"> Next </button>
-        </div>
-
+      <button class="navButton" data-direction=">"> Next </button>
     </div>
-    <script>
 
-      /*
-        Завдання:
+    <div class="roadMap__container red">
+      <button class="navButton" data-direction="<"> Prev </button>
+      <div class="roadMap">
+        <div class="roadMapPoint" data-id="1"></div>
+        <div class="roadMapPoint" data-id="2"></div>
+        <div class="roadMapPoint ball" data-id="3"></div>
+        <div class="roadMapPoint" data-id="4"></div>
+      </div>
+      <button class="navButton" data-direction=">"> Next </button>
+    </div>
 
-         Написати скрипт, який приводить у дію перемикачі з розмітки.
-         І переміщатиме клас ball по точках залежно від натиснутої кнопки
+    <div class="roadMap__container blue">
+      <button class="navButton" data-direction="<"> Prev </button>
+      <div class="roadMap">
+        <div class="roadMapPoint" data-id="1"></div>
+        <div class="roadMapPoint ball" data-id="2"></div>
+        <div class="roadMapPoint" data-id="3"></div>
+        <div class="roadMapPoint" data-id="4"></div>
+      </div>
+      <button class="navButton" data-direction=">"> Next </button>
+    </div>
 
-      */
+    <div class="roadMap__container red">
+      <button class="navButton" data-direction="<"> Prev </button>
+      <div class="roadMap">
+        <div class="roadMapPoint" data-id="1"></div>
+        <div class="roadMapPoint" data-id="2"></div>
+        <div class="roadMapPoint ball" data-id="3"></div>
+        <div class="roadMapPoint" data-id="4"></div>
+      </div>
+      <button class="navButton" data-direction=">"> Next </button>
+    </div>
 
-      var containers = document.querySelectorAll('.roadMap__container');
-          containers.forEach( function( container ){
-            console.log( container );
-            var ball = container.querySelector('.ball');
-            console.log( ball.dataset.id );
-          })
+    <div class="roadMap__container blue">
+      <button class="navButton" data-direction="<"> Prev </button>
+      <div class="roadMap">
+        <div class="roadMapPoint" data-id="1"></div>
+        <div class="roadMapPoint ball" data-id="2"></div>
+        <div class="roadMapPoint" data-id="3"></div>
+        <div class="roadMapPoint" data-id="4"></div>
+      </div>
+      <button class="navButton" data-direction=">"> Next </button>
+    </div>
 
-    </script>
-  </body>
+  </div>
+  <script>
+    var roadMapContainer = document.querySelectorAll('.roadMap__container');
+
+    roadMapContainer.forEach(function (item) {
+      var roadMap = item.querySelectorAll('.roadMapPoint');
+      var buttons = item.querySelectorAll('.navButton');
+      buttons.forEach((btn) => {
+        if (btn.innerText == 'Prev') {
+          btn.addEventListener('click', ballPrev);
+        } else {
+          btn.addEventListener('click', ballNext);
+        }
+      });
+
+      function ballPrev() {
+        var ballItem = item.querySelector('.ball')
+        ballItem.classList.remove('ball');
+        var prevBallId = ballItem.dataset.id - 1;
+        if (prevBallId > 0) {
+          var prevBallAddClass = item.querySelector('[data-id="' + prevBallId + '"]');
+          prevBallAddClass.classList.add('ball');
+        } else {
+          ballItem.classList.add('ball');
+        }
+      }
+
+      function ballNext() {
+        var ballItem = item.querySelector('.ball')
+        ballItem.classList.remove('ball');
+        var nextBallId = +ballItem.dataset.id + 1;
+        if (nextBallId != roadMap.length + 1) {
+          var nextBallAddClass = item.querySelector('[data-id="' + nextBallId + '"]');
+          nextBallAddClass.classList.add('ball');
+        } else {
+          ballItem.classList.add('ball');
+        }
+      }
+    });
+    /*
+      Завдання:
+
+       Написати скрипт, який приводить у дію перемикачі з розмітки.
+       І переміщатиме клас ball по точках залежно від натиснутої кнопки
+
+    */
+
+    // var containers = document.querySelectorAll('.roadMap__container');
+    // containers.forEach(function (container) {
+    //   console.log(container);
+    //   var ball = container.querySelector('.ball');
+    //   console.log(ball.dataset.id);
+    // })
+
+  </script>
+</body>
 
 </html>

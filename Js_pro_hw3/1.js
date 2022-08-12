@@ -18,5 +18,46 @@
 
 */
 
-  var OurSliderImages = ['images/cat1.jpg', 'images/cat2.jpg', 'images/cat3.jpg', 'images/cat4.jpg', 'images/cat5.jpg', 'images/cat6.jpg', 'images/cat7.jpg', 'images/cat8.jpg'];
-  var currentPosition = 0;
+var images = ["images/cat1.jpg", "images/cat2.jpg", "images/cat3.jpg", "images/cat4.jpg", "images/cat5.jpg", "images/cat6.jpg", "images/cat7.jpg", "images/cat8.jpg"];
+var currentPosition = 0;
+var sliderCont = document.querySelector("#slider");
+var btnNext = document.querySelector("#NextSilde");
+var btnPrev = document.querySelector("#PrevSilde");
+
+function renderImage(index) {
+  var slid = document.createElement("img");
+  slid.src = images[index];
+  sliderCont.innerHTML = "";
+  sliderCont.appendChild(slid);
+}
+
+function nextSlide() {
+  if (currentPosition === images.length - 1) {
+    currentPosition = 0;
+  } else {
+    currentPosition += 1;
+  }
+
+  renderImage(currentPosition);
+}
+
+function prevSlide() {
+  if (currentPosition === 0) {
+    currentPosition = images.length - 1;
+  } else {
+    currentPosition -= 1;
+  }
+  renderImage(currentPosition);
+}
+
+window.addEventListener('load', function(){
+  renderImage(currentPosition);
+  
+  btnNext.addEventListener('click', function(){
+    nextSlide(currentPosition);
+  });
+
+  btnPrev.addEventListener('click', function(){
+    prevSlide(currentPosition);
+  });
+});
