@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Forms Task 1</title>
+  <script>
+    /*
+          Завдання:
+         Зробити валідацію форми:
+         1. Логін / Пароль не може бути порожнім
+         2. Паролі повинні збігтися
+         3. Поки не варто що користувач згоден з осіб. угодою – кнопка відправки не активна
+
+         + бонус – те поле, яке не пройшло валідацію підсвічувати червоним.
+                 - яке пройшло – підсвічувати зеленим.
+    */
+    //  1- получить значения полей логин пароль и кнопки соглачия
+    //  2 проверь не пустые ли поля
+    //  3- сравнить пароли
+    //  4-проверить согласен или нет
+    //  5- добавить класы по условию
+    var login = document.getElementsByName('logi');
+    var pas1 = document.getElementsByName('pas1').value;
+    var pas2 = document.getElementsByName('pas2').value;
+    console.log(login)
+  </script>
+</head>
+
+<body>
+  <form id="MyValidateForm">
+    <input type="text" name='login' placeholder="Ваш логин" />
+    <input type="password" name='pas1' placeholder="Ваш пароль" />
+    <input type="password" name='pas2' placeholder="Повторите пароль" />
+    <label for="agree">
+      <span>Вы согласны с лицензионым соглашением.</span>
+      <input type="checkbox" id="agree" />
+    </label>
+    <input type="submit" id="submit" value="Отправить" disabled />
+  </form>
+
+  <style>
+    #MyValidateForm {
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #MyValidateForm input {
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      padding: 10px 20px;
+    }
+
+    .error {
+      border: 1px solid red;
+    }
+
+    .OK {
+      border: 1px solid green;
+    }
+  </style>
+</body>
+
+</html>
