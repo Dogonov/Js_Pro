@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework6</title>
+
+    <script>
+    /*
+      Завдання:
+         1. Використовуючи інтерфейс який є на сторінці, написати візуальний
+         конструктор об'єктів використовуючи значення key-value, які вводяться в
+         відповідні поля у формі.
+
+         2. Кожен створений об'єкт виводити в тег code після додавання кожного
+         нового поля. Тобто ми маємо візуально бачити в якому стані наші об'єкти
+         зараз
+
+         3. Після натискання кнопки Combine Objects! два об'єкти повинні об'єднатися
+         використовуючи метод Object.assing або spread operator і вивестися на стрінчку.
+
+         * Змінювати HTML можна.
+
+    */
+
+    document.addEventListener('DOMContentLoaded', () => {
+        let firstForm = document.getElementById('firstForm');
+        let secondForm = document.getElementById('secondForm');
+        let combineBtn = document.getElementById('combineBtn');
+        let result = document.getElementById('result');
+
+        const firstObj = {};
+        const secondObj = {};
+        let combinedObj = {};
+
+        const manipulateObj = (obj) => {
+          e.preventDefault();          
+
+          firstObj[e.target.value.value] = e.target.key.value;
+
+          firstCode.innerText = JSON.stringify(firstObj);
+        }
+
+        const renderObj = () => {
+          combinedObj = {
+            ...firstObj,
+            ...secondObj
+          }
+
+          result.innerText = JSON.stringify(combinedObj);
+        }
+
+        firstForm.addEventListener('submit', (e) => {
+          e.preventDefault();          
+
+          firstObj[e.target.value.value] = e.target.key.value;
+
+          firstCode.innerText = JSON.stringify(firstObj);
+        });
+
+        secondForm.addEventListener('submit', (e) => {
+          e.preventDefault();          
+
+          secondObj[e.target.value.value] = e.target.key.value;
+
+          secondCode.innerText = JSON.stringify(secondObj);
+        });
+
+        combineBtn.addEventListener('click', renderObj);
+
+      });
+    </script>
+</head>
+<body>
+  <div class="wrap">
+      <div id="firstForm" class="assigned">
+        <form class="ObjForm" autocomplete="off">
+            <input name="key" placeholder="Enter your key"/>
+            <input name="value" placeholder="Enter your value"/>
+            <button type="submit">Send</button>
+        </form>
+        <div class="createResult">
+          <header>
+            Created Object
+          </header>
+          <div class="createdObj">
+            <code id="firstCode">
+              {
+                id:123,
+                b:'test',
+                demo:'test2'
+              }
+            </code>
+          </div>
+        </div>
+      </div>
+
+      <div id="secondForm"  class="assigned">
+        <form class="ObjForm" autocomplete="off">
+            <input name="key" placeholder="Enter your key"/>
+            <input name="value" placeholder="Enter your value"/>
+            <button type="submit">Send</button>
+          </form>
+          <div class="createResult">
+            <header>
+              Created Object
+            </header>
+            <div class="createdObj">
+              <code id="secondCode">
+                {
+                  id:123,
+                  b:'test',
+                  demo:'test2'
+                }
+              </code>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="resultBlock">
+       <button id="combineBtn">Combine Objects!</button>
+      <h3> Result: </h3>
+      <div id="result"></div>
+    </div>
+
+      <style>
+        .wrap{
+          width: 800px;
+          display: flex;
+          flex-direction: column;
+        }
+        .ObjForm,
+        .resultBlock{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          box-sizing: border-box;
+          padding: 10px 20px;
+        }
+
+        .assigned{
+          width: 300px;
+          display: flex;
+        }
+        .createResult header{
+          font-weight: 700;
+        }
+
+      </style>
+</body>
+</html>

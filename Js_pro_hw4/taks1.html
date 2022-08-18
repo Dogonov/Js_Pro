@@ -20,23 +20,76 @@
     //  3- сравнить пароли
     //  4-проверить согласен или нет
     //  5- добавить класы по условию
-    var login = document.getElementsByName('logi');
-    var pas1 = document.getElementsByName('pas1').value;
-    var pas2 = document.getElementsByName('pas2').value;
-    console.log(login)
+
+    // var checkEmpt = (e) => {
+    //   var result = e.value;
+    //   console.log(result);
+    // }
+
+    // log.addEventListener("change", checkEmpt);
+
+
+    var form = document.querySelector("#MyValidateform");
+    var submit = document.querySelector("#submit");
+    var checkAgree = document.querySelector("#agree");
+
+    var checkEmpt = (e) => {
+      return e.length === 0;
+    }
+
+    var checkPass = (pass1, pass2) => {
+      return pass1 === pass2;
+    }
+
+    checkAgree.addEventListener("click", (e) => {
+      if (e.target.checked) {
+        submit.removeAttribute("disabled");
+      } else {
+        submit.setAttribute("disabled", "");
+      }
+    })
+
+    form.addEventListener("submit", (e) => {
+      var chek = true;
+
+      if (checkEmpt(form.login.value)) {
+        chek = false;
+        form.login.className = "error";
+      } else {
+        form.login.className = "OK";
+      }
+
+      if (checkEmpt(form.pas1.value)) {
+        chek = false;
+        form.pas1.className = "error";
+      } else {
+        form.pas1.className = "OK";
+      }
+
+      if (!checkPass(form.pas1.value, form.pas2.value)) {
+        chek = false;
+        form.pas2.className = "error";
+      } else {
+        form.pas2.className = "OK";
+      }
+
+      if (chek) {
+        console.log("OK!");
+      }
+    });
   </script>
 </head>
 
 <body>
   <form id="MyValidateForm">
-    <input type="text" name='login' placeholder="Ваш логин" />
+    <input type="text" name='login' placeholder="Ваш логин" required />
     <input type="password" name='pas1' placeholder="Ваш пароль" />
     <input type="password" name='pas2' placeholder="Повторите пароль" />
     <label for="agree">
       <span>Вы согласны с лицензионым соглашением.</span>
       <input type="checkbox" id="agree" />
     </label>
-    <input type="submit" id="submit" value="Отправить" disabled />
+    <input type="submit" id="submit" value="Отправить" disabled/>
   </form>
 
   <style>

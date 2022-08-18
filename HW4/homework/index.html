@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework4</title>
+</head>
+<body>
+    <form id="mainForm">
+        <label for="userName">Ім'я користувача:</label>
+        <input type="text" minlength="2" id="userName" required name="userName">
+        <br>
+        <label for="userEmail">Email</label>
+        <input type="email" minlength="3" id="userEmail" required name="userEmail">
+        <br>
+        <label for="userPassword">Пароль</label>
+        <input type="password" minlength="8" maxlength=16 id="userPassword" required name="userPassword">
+        <br>
+        <label for="apple">Кількість з'їдених яблук:</label>
+        <input type="text" minlength="1" id="apple" required name="apple">
+        <br>
+        <label for="blockThanks">Дякуємо за яблука:</label>
+        <input type="text" id="blockThanks" required name="blockThanks" >
+        <br>
+        <label for="agreeToStudy">Згоден на навчання:</label>
+        <input type="checkbox" id="agreeToStudy" required name="agreeToStudy" >
+        <br>
+        <input type="submit" name="submitBtn" id="submitBtn" value="Submit">
+        <input type="button" name="validateBtn" id="validateBtn" value="Validate">
+
+    </form>
+
+    <script src="./Task1.js"> </script>    
+</body>
+</html>

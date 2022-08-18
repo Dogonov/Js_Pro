@@ -23,64 +23,58 @@
     */
 
     window.addEventListener("load", function () {
+      var Block = document.getElementById('result');
+      
       var myWidth = document.getElementById('myWidth');
       var myColor = document.getElementById('myColor');
       var myHeight = document.getElementById('myHeight');
       var myBorderRadius = document.getElementById('myBorderRadius');
       var myMargin = document.getElementById('myMargin');
-      let myResult = document.getElementById('result');
 
-      myWidth.addEventListener('input', function (event) {
-        myResult.style.width = event.target.value + 'px';
+
+      myWidth.addEventListener('input', function(event){
+        Block.style.width = event.target.value + 'px';
       });
 
-      myColor.addEventListener('input', function (event) {
-        myResult.style.background = event.target.value;
+      myColor.addEventListener('input', function(event){        
+        Block.style.background = event.target.value;
       });
 
-      myHeight.addEventListener('input', function (event) {
-        myResult.style.height = event.target.value + 'px';
+      myHeight.addEventListener('input', function(event){
+        Block.style.height = event.target.value + 'px';
       });
 
-      myBorderRadius.addEventListener('input', function (event) {
-        myResult.style.borderRadius = event.target.value + 'px';
+      myBorderRadius.addEventListener('input', function(event){
+        Block.style.borderRadius = event.target.value + 'px';
       });
 
-      myMargin.addEventListener('input', function (event) {
-        myResult.style.margin = event.target.value + 'px';
+      myMargin.addEventListener('input', function(event){
+        Block.style.margin = event.target.value + 'px';
       });
     });
 
   </script>
-
-  <style>
-    #test {
-      width: 400px;
-      height: 400px;
-      background: green;
-    }
-  </style>
 </head>
 
 <body>
   <div class="Templating">
     <form>
+      <span>Width</span>
       <input type="range" id="myWidth" min="10" max="500" step="10" />
+      <span>Color</span>
       <input type="color" id="myColor" min="10" max="500" step="10" />
-      <input type="range" id="myHeight" min="10" max="500" step="10"/>
-      <input type="range" id="myBorderRadius" min="10" max="500" step="10"/>
-      <input type="range" id="myMargin" min="10" max="500" step="10"/>
+      <span>Height</span>
+      <input type="range" id="myHeight" min="10" max="500" step="10" />
+      <span>Border Radius</span>
+      <input type="range" id="myBorderRadius" min="10" max="500" step="10" />
+      <span>Margin</span>
+      <input type="range" id="myMargin" min="10" max="500" step="10" />
     </form>
 
     <div class="TemplatingResult">
       <div id="result" class="result"></div>
     </div>
   </div>
-
-
-  <!-- <div id="test">
-    <span>some test</span>
-  </div> -->
 
   <style>
     #colors {
@@ -117,5 +111,4 @@
     }
   </style>
 </body>
-
 </html>
