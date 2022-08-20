@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Form work1</title>
@@ -23,17 +24,76 @@
 
         + бонус додати красиві картинки з погодою
     */
+    function getRandom(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
     window.addEventListener("load", function () {
       var countries = ['Ukraine', 'Poland', 'USA'];
       var ukraineCity = ['Kyiv', 'Lviv', 'Odesa', 'Charkiv'];
       var polandCity = ['Warszawa', 'Poznan', 'Krakow', 'Katowice'];
       var usaCity = ['New York', 'Los Angeles', 'Las Vegas', 'Chicago'];
+
+      var countriesList = {
+        "Ukraine": ukraineCity,
+        "Poland": polandCity,
+        "USA": usaCity
+      };
+
+      var countriesSelect = document.querySelector('#countries');
+      var result = document.querySelector('#result');
+      var info = document.querySelector('#info');
+
+      countries.forEach(function (e) {
+        var option = document.createElement('option');
+        option.innerText = e;
+        countriesSelect.appendChild(option);
+      });
+
+      countriesSelect.addEventListener('input', function (e) {
+        var citySelect = document.createElement('select');
+        var selectedCountry = e.target.value;
+
+        countriesList[selectedCountry].forEach(e => {
+          var option = document.createElement('option');
+          option.innerText = e;
+          citySelect.appendChild(option);
+        });
+
+        result.innerHTML = '';
+        result.appendChild(citySelect);
+
+        citySelect.addEventListener('input', function (e) {
+          var randomTemperature = getRandom(-10, 40);
+          var currentWeather = '';
+          var selectedCity = e.target.value;
+
+          if (randomTemperature > -10 && randomTemperature < 0) {
+            currentWeather = " Сонячно, Легкий снігопа, Сильний снігопад"
+          }
+
+          if (randomTemperature > 0 && randomTemperature < 30) {
+            currentWeather = " Сонячно, Дощ, Вітер, Можливий дощ";
+          }
+
+          if (randomTemperature > 30) {
+            currentWeather = " Сонячно, Засуха, Вітер";
+          }
+
+          var weatherInfo = selectedCountry + " В " + selectedCity + currentWeather + " " + randomTemperature + " градусів.";
+          info.innerHTML = weatherInfo;
+        })
+      });
     });
   </script>
 </head>
+
 <body>
   <select id="countries"></select>
   <div id="result"></div>
-  
+  <p id="info"></p>
 </body>
+
 </html>

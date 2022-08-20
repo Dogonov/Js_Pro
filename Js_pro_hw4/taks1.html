@@ -50,30 +50,30 @@
     })
 
     form.addEventListener("submit", (e) => {
-      var chek = true;
+      var check = true;
 
       if (checkEmpt(form.login.value)) {
-        chek = false;
+        check = false;
         form.login.className = "error";
       } else {
         form.login.className = "OK";
       }
 
       if (checkEmpt(form.pas1.value)) {
-        chek = false;
+        check = false;
         form.pas1.className = "error";
       } else {
         form.pas1.className = "OK";
       }
 
       if (!checkPass(form.pas1.value, form.pas2.value)) {
-        chek = false;
+        check = false;
         form.pas2.className = "error";
       } else {
         form.pas2.className = "OK";
       }
 
-      if (chek) {
+      if (check) {
         console.log("OK!");
       }
     });
