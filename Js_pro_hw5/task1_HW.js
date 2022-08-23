@@ -54,35 +54,34 @@ function Avatar(comments) {
 
   this.Create = function () {
     this.comments.forEach(comment => {
-      var block = document.createElement("div");
+      var form = document.createElement("div");
 
       var title = document.createElement("h2");
       title.innerText = comment.name;
-      block.appendChild(title);
+      form.appendChild(title);
 
       var text = document.createElement("p");
       text.innerText = comment.text;
-      block.appendChild(text);
+      form.appendChild(text);
 
       var avatar = document.createElement("img");
       avatar.src = comment.avatarUrl;
-      block.appendChild(avatar);
+      form.appendChild(avatar);
 
       var likes = document.createElement("div");
       var likesImg = document.createElement("img");
       likesImg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIYSJsCJKn1C_xz56tmFrtA5l4A-cnl5XNa_j787k&s";
       likes.className = "like";
       likes.innerText = comment.likes;
-      likes.appendChild(likesImg);
-      block.appendChild(likes);
+      form.appendChild(likesImg);
+      form.appendChild(likes);
 
-      block.addEventListener("click", function () {
+      likesImg.addEventListener("click", function () {
         comment.addLike();
-        block.querySelector(".like").innerHTML = comment.likes;
-        console.log(comment.likes)
+        form.querySelector(".like").innerHTML = comment.likes;
       })
 
-      commentsContainer.appendChild(block);
+      commentsContainer.appendChild(form);
     })
   }
 
