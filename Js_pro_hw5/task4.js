@@ -31,3 +31,46 @@
       String.fromCharCode(189, 43, 190, 61) // ½+¾
 
 */
+function encryptCesar(number, word) {
+  return word.split('').map(i => {
+    if (i === i.toUpperCase()) {
+      if (i.charCodeAt() + number > 'Z'.charCodeAt()) {
+        return String.fromCharCode('A'.charCodeAt() + ((i.charCodeAt() + number) - 'Z'.charCodeAt() - 1))
+      } else {
+        return String.fromCharCode(i.charCodeAt() + number);
+      }
+    } else {
+      if (i.charCodeAt() + number > 'z'.charCodeAt()) {
+        return String.fromCharCode('a'.charCodeAt() + ((i.charCodeAt() + number) - 'z'.charCodeAt() - 1))
+      } else {
+        return String.fromCharCode(i.charCodeAt() + number);
+      }
+    }
+  })
+}
+
+console.log(encryptCesar(2, 'Max'));
+var encryptCesarBind = encryptCesar.bind(null, 5);
+console.log(encryptCesarBind('VlaD'));
+
+function decryptCesar(number, word) {
+  return word.split('').map(i => {
+    if (i === i.toUpperCase()) {
+      if (i.charCodeAt() - number < 'A'.charCodeAt()) {
+        return String.fromCharCode('Z'.charCodeAt() - (('A'.charCodeAt() + number) - i.charCodeAt() - 1))
+      } else {
+        return String.fromCharCode(i.charCodeAt() - number);
+      }
+    } else {
+      if (i.charCodeAt() - number < 'a'.charCodeAt()) {
+        return String.fromCharCode('z'.charCodeAt() - (('a'.charCodeAt() + number) - i.charCodeAt() - 1))
+      } else {
+        return String.fromCharCode(i.charCodeAt() - number);
+      }
+    }
+  })
+}
+
+console.log(decryptCesar(3, 'Anatoliy'));
+var decryptCesarBind2 = decryptCesar.bind(null,3);
+console.log(decryptCesarBind2('Lesha'));

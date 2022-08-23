@@ -22,3 +22,24 @@
       /* ... делать что-то с obj[key] ...
     // }
 */
+function Dog(name, breed, status) {
+  this.name = name;
+  this.breed = breed;
+  this.status = status;
+
+  this.changeStatus = function () {
+    this.status = ' dog is ranning';
+    console.log(`${this.name} is eating. It is ${this.breed}, it has status ${this.status}`);
+  }
+
+  this.showProps = function () {
+    for (key in this) {
+      console.log(key, this[key]);
+      this[key] += 'result';
+    }
+  }
+}
+
+var result = new Dog('RedDog', 'ShepherdDog', 'lazy');
+result.changeStatus();
+console.log(result);
