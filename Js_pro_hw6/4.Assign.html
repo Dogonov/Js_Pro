@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Classwork</title>
 
-    <script>
+<head>
+  <meta charset="UTF-8">
+  <title>Classwork</title>
+
+  <script>
     /*
       Завдання:
          1. Використовуючи інтерфейс який є на сторінці, написати візуальний
@@ -21,84 +22,123 @@
          * Змінювати HTML можна.
 
     */
-    </script>
+  </script>
 </head>
+
 <body>
   <div class="wrap">
-      <div class="assigned">
-        <form class="ObjForm">
-            <input name="key" placeholder="Enter your key"/>
-            <input name="value" placeholder="Enter your value"/>
-            <button type="submit">Send</button>
-        </form>
-        <div class="createResult">
-          <header>
-            Created Object
-          </header>
-          <div class="createdObj">
-            <code>
-              {
-                id:123,
-                b:'test',
-                demo:'test2'
-              }
-            </code>
-          </div>
+    <div id=" firstForm" class="assigned">
+      <form class="ObjForm">
+        <input name="key" placeholder="Enter your key" />
+        <input name="value" placeholder="Enter your value" />
+        <button type="submit">Send</button>
+      </form>
+      <div class="createResult">
+        <header>
+          Created Object
+        </header>
+        <div class="createdObj">
+          <code id="firstCode"></code>
         </div>
       </div>
+    </div>
 
-      <div class="assigned">
-        <form class="ObjForm">
-            <input name="key" placeholder="Enter your key"/>
-            <input name="value" placeholder="Enter your value"/>
-            <button type="submit">Send</button>
-          </form>
-          <div class="createResult">
-            <header>
-              Created Object
-            </header>
-            <div class="createdObj">
-              <code>
-                {
-                  id:123,
-                  b:'test',
-                  demo:'test2'
-                }
-              </code>
-            </div>
-          </div>
+    <div id="secondForm" class="assigned">
+      <form class="ObjForm">
+        <input name="key" placeholder="Enter your key" />
+        <input name="value" placeholder="Enter your value" />
+        <button type="submit">Send</button>
+      </form>
+      <div class="createResult">
+        <header>
+          Created Object
+        </header>
+        <div class="createdObj">
+          <code id="secondCode"></code>
+        </div>
       </div>
     </div>
-    <div class="resultBlock">
-       <button>Combine Objects!</button>
-      <h3> Result: </h3>
-      <div id="result"></div>
-    </div>
+  </div>
+  <div class="resultBlock">
+    <button>Combine Objects!</button>
+    <h3> Result: </h3>
+    <div id="result"></div>
+  </div>
 
-      <script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      var firstForm = document.querySelector('#firstForm');
+      var secondForm = document.querySelector('#secondForm');
+      var combineBtn = document.querySelector('#combineBtn');
+      var result = document.querySelector('#result');
+      var firstElem = document.querySelector('#firstCode');
+      var secondElem = document.querySelector('#secondCode');
 
-      </script>
-      <style>
-        .wrap{
-          width: 800px;
-          display: flex;
-        }
-        .ObjForm,
-        .resultBlock{
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          box-sizing: border-box;
-          padding: 10px 20px;
+      const firstObj = {};
+      const secondObj = {};
+      var combinedObj = {};
+
+      const manipulateObj = (e, obj, elem) => {
+        e.preventDefault();
+
+        obj[e.target.value.value] = e.target.key.value;
+
+        elem.innerText = JSON.stringify(firstObj);
+      }
+
+      const manipulateObjShort = (obj, elem) => (e) => {
+        e.preventDefault();
+
+        obj[e.target.value.value] = e.target.key.value;
+
+        elem.innerText = JSON.stringify(obj);
+
+        e.target.key.value = '';
+        e.target.value.value = '';
+      }
+
+      const addObj = () => {
+        combinedObj = {
+          ...firstObj,
+          ...secondObj
         }
 
-        .assigned{
-          width: 300px;
-          display: flex;
-        }
-        .createResult header{
-          font-weight: 700;
-        }
-      </style>
+        result.innerText = JSON.stringify(combinedObj);
+
+        firstElem.innerText = '';
+        secondElem.innerText = '';
+      }
+      firstForm.addEventListener('submit', manipulateObjShort(firstObj, firstElem))
+      secondForm.addEventListener('submit', manipulateObjShort(secondObj, secondElem));
+
+      combineBtn.addEventListener('click', addObj);
+
+    });
+  </script>
+  <style>
+    .wrap {
+      width: 800px;
+      display: flex;
+    }
+
+    .ObjForm,
+    .resultBlock {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-sizing: border-box;
+      padding: 10px 20px;
+    }
+
+    .assigned {
+      width: 300px;
+      display: flex;
+    }
+
+    .createResult header {
+      font-weight: 700;
+    }
+  </style>
 </body>
+
 </html>

@@ -13,7 +13,7 @@
     <input id="searchInput" type="text">
   </label>
   <button id="searchBtn">Search!</button>
-  <ul id="sortedList"></ul>
+  <ul id="list"></ul>
   <script>
 
     /*
@@ -30,17 +30,17 @@
     var arrItemLength = ITEA_COURSES.map(item => item.length);
     console.log(arrItemLength);
 
-    var sortedList = document.getElementById("sortedList");
-    const SortedArray = (arr) => {
-      sortedList.innerHTML = arr.sort().map(item => (`<li>${item}</li>`)).join(" ");
+    var list = document.querySelector("#list");
+    const sortedArr = (arr) => {
+      list.innerHTML = arr.sort().map(item => (`<li>${item}</li>`)).join(" "); //функция  сразу возвращает то что в ней указанно
     }
 
-    SortedArray(ITEA_COURSES);
+    sortedArr(ITEA_COURSES);
 
     const filterArr = (arr, str) => {
       var innerArr = [...arr];
-      var filterdArr = innerArr.filter(item => item.toLowerCase().indexOf(str.toLowerCase()) !== -1);
-      SortedArray(filterdArr);
+      var filterdArr = innerArr.filter(item => item.toLowerCase().indexOf(str.toLowerCase()));
+      sortedArr(filterdArr);
     }
 
     var searchBtn = document.querySelector("#searchBtn")
@@ -84,39 +84,8 @@
       }
     ];
 
-    let movieStars = document.getElementById('movieStars');
-    let moviesBlock = document.getElementById('moviesBlock');
-    let durationFilter = document.getElementById('durationFilter');
-
-    const buildMoviesList = (arr) => {
-      moviesBlock.innerHTML = arr.map(item => {
-        return `
-                      <li>
-                        <h3>Movie name: ${item.name}</h3>
-                        <span>Duration: ${item.duration}</span>
-                        <p>Starring: ${item.starring.join(',')}</p>
-                      </li>
-                      `
-      })
-    }
-
-    stars.forEach(item => {
-      movieStars.appendChild(new Option(item, item));
-    });
-
-    const filterByStar = (star) => movies.filter(x => x.starring.includes(star));
-    const filterByLength = (length) => movies.filter(x => x.duration > length);
-
-    movieStars.addEventListener('change', () => {
-      buildMoviesList(filterByStar(movieStars.options[movieStars.selectedIndex].value));
-    });
-
-    durationFilter.addEventListener('input', (e) => {
-      buildMoviesList(filterByLength(e.target.value));
-    });
-
-    buildMoviesList(movies);
-
+    const filterStars = (star) => movies.filter(x => x.starring.includes(star));
+    const filterLength = (length) => movies.filter(x => x.duration > length);
   </script>
 </body>
 
