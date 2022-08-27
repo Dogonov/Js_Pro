@@ -27,7 +27,7 @@
 
 <body>
   <div class="wrap">
-    <div id=" firstForm" class="assigned">
+    <div id="firstForm" class="assigned">
       <form class="ObjForm">
         <input name="key" placeholder="Enter your key" />
         <input name="value" placeholder="Enter your value" />
@@ -60,58 +60,52 @@
     </div>
   </div>
   <div class="resultBlock">
-    <button>Combine Objects!</button>
-    <h3> Result: </h3>
-    <div id="result"></div>
-  </div>
+    <button id="resultBtn">Combine Objects!</button>
+   <h3> Result: </h3>
+   <div id="result"></div>
+ </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      var firstForm = document.querySelector('#firstForm');
-      var secondForm = document.querySelector('#secondForm');
-      var combineBtn = document.querySelector('#combineBtn');
-      var result = document.querySelector('#result');
-      var firstElem = document.querySelector('#firstCode');
-      var secondElem = document.querySelector('#secondCode');
+    document.addEventListener("DOMContentLoaded", () => {
+      var firstForm = document.querySelector("#firstForm");
+      var secondForm = document.querySelector("#secondForm");
+      var resultBtn = document.querySelector("#resultBtn");
+      var result = document.querySelector("#result");
+      var firstElem = document.querySelector("#firstCode");
+      var secondElem = document.querySelector("#secondCode");
 
       const firstObj = {};
       const secondObj = {};
       var combinedObj = {};
 
       const manipulateObj = (e, obj, elem) => {
-        e.preventDefault();
-
+        e.preventDefault();//меняет состояние проверки(поискать примеры)
         obj[e.target.value.value] = e.target.key.value;
-
         elem.innerText = JSON.stringify(firstObj);
       }
 
       const manipulateObjShort = (obj, elem) => (e) => {
         e.preventDefault();
-
         obj[e.target.value.value] = e.target.key.value;
-
         elem.innerText = JSON.stringify(obj);
-
-        e.target.key.value = '';
-        e.target.value.value = '';
+        e.target.key.value = "";
+        e.target.value.value = "";
+        
       }
 
-      const addObj = () => {
+      const renderObj = () => {
         combinedObj = {
           ...firstObj,
           ...secondObj
         }
 
         result.innerText = JSON.stringify(combinedObj);
-
-        firstElem.innerText = '';
-        secondElem.innerText = '';
+        firstElem.innerText = "";
+        secondElem.innerText = "";
       }
-      firstForm.addEventListener('submit', manipulateObjShort(firstObj, firstElem))
-      secondForm.addEventListener('submit', manipulateObjShort(secondObj, secondElem));
-
-      combineBtn.addEventListener('click', addObj);
+      firstForm.addEventListener("submit", manipulateObjShort(firstObj, firstElem))
+      secondForm.addEventListener("submit", manipulateObjShort(secondObj, secondElem));
+      resultBtn.addEventListener("click", renderObj);
 
     });
   </script>
