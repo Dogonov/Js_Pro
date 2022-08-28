@@ -13,14 +13,31 @@
         <input name="name" />
         <input name="age" />
         <input name="password" />
-        <button id="convertJSON"></button>
+        <button id="convertJSON">Convert to JSON</button>
     </form>
 
     <form id="formResult">
-        <input />
-        <button id="parseJSON"></button>
+        <input name="name" type="text" />
+        <button id="parseJSON">Parse JSON</button>
     </form>
+    <style>
+        table,
+        td {
+            border: 1px solid #000;
+            padding: 15px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show + .hide {
+            display: block;
+        }
+    </style>
     <script src="./1_json.js"></script>
+    <script src="./2_fetch.js"></script>
+    <script src="./3_async.js"></script>
 </body>
 
 </html>
