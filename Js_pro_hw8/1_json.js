@@ -21,3 +21,29 @@
   -> '{"name" : !"23123", "age": 15, "password": "*****" }'
 
 */
+
+document.addEventListener('DOMContentLoaded', () => {
+  var form = document.querySelector('#form');
+  var convertJSON = document.querySelector('#convertJSON');
+
+  convertJSON.addEventListener('click', (e) => {
+    e.preventDefault();
+    var obj = {};
+
+    var arrInfo = Array.from(form.elements).filter(x => x.name !== '');
+
+    arrInfo.forEach(item => ( obj[item.name] = item.value));
+
+    console.log(JSON.stringify(obj));
+  });
+
+  // second task
+  var formResult = document.querySelector('#formResult');
+  var btnParseJSON = document.querySelector('#parseJSON');
+
+  btnParseJSON.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(JSON.parse(formResult.name.value));
+    console.log(formResult.name.value);
+  })
+});
