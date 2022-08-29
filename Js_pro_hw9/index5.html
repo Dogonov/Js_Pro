@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW9</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: white;
+        }
+    #aboutTextArea {
+        resize: none;
+        width: 300px;
+        height: 100px;
+    }
+    #posts {
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 600px;
+        margin: 0 auto;
+    }
+    .main {
+        width: 600px;
+        margin: 0 auto;
+        margin-bottom: 15px;
+    }
+    #labelTitle {
+        font-size: 24px;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+    .titleInput {
+        width: 450px;
+    }
+    #post {
+        background-color: rgb(135, 222, 168);
+    }
+    #aboutTextArea {
+        width: 450px;
+        margin: 0 auto; 
+    }
+    #form {
+        background-color: rgb(135, 222, 222);
+
+    }
+
+    .picLikes {
+    width: 100px;
+    }
+    .picLikes:active {
+    width: 90px;
+    transition: 0.5s;
+    }
+    .pic {
+    display: flex;
+    justify-content: space-around;
+    }
+    .nameset {
+        font-size: 25px;
+        text-align: center;
+    }
+    .count {
+        display: flex;
+        align-items: center;
+    }
+    </style>
+    <body>
+        <div class="main">
+        <form id="form">
+            <label for="" id="labelTitle">Title<br>
+            <input type="text" class="titleInput" id="titleInput" name="title" placeholder="Enter the title"></label><br>
+            <label for="" id="labelTitle">About<br>
+            <textarea name="about" class="aboutTextArea" id="aboutTextArea" placeholder="Enter the about title"></textarea></label>
+            <br>
+            <br>
+            <button id="sendForm">Send</button>
+            <button id="loadPosts">Load Posts</button>
+        </form>
+        </div>
+        <div id="posts"></div>
+
+    <script>
+/*
+    Завдання 3:
+     Написати форму з 2 полями для title та about
+     при сабміті форми повинен створюватися пост на основі класу Post
+     <form>
+         <input type="text" name="title">
+         <textarea name="about"></textarea>
+         <button>Send</button>
+     </form>
+     Написати клас Post у якому є дані:
+     _id
+     title,
+     body,
+     likes
+     У класу повинен бути метод addLike та render.
+     Потрібно зробити так щоб:
+     - Після додавання поста дані про нього записуються в localStorage.
+     - Після перезавантаження сторінки дані повинні зберегтися.
+     - Можна було завантажити дані до класу з апі: https://jsonplaceholder.typicode.com/posts
+*/  
+
+
+let form = document.getElementById("form");
+let loadPostsBtn = form.querySelector("#loadPosts");
+let myObj = [];
+
+class Post {
+  constructor(_id, title, body, likes) {
+    this._id = _id;
+    this.title = title;
+    this.body = body;
+    this.likes = likes ? likes : 0;
+    this.addLike = this.addLike.bind(this);
+    myObj.push(this);
+  }
+  render() {
+    let div = document.getElementById("posts");
+    let node = document.createElement("div");
+    node.setAttribute("id", "post");
+    node.dataset.id = this._id;
+    node.innerHTML = `
+            <p id='idTitle'>User id ${this._id}</p>
+            <div class='nameset'>Title</div>
+            <p>${this.title}</p>
+            <div class='nameset'>About</div>
+            <p>${this.body}</p>
+            <div class='nameset'>Likes</div>
+            <div class='pic'><img class='picLikes' id='setLike' src='_icon.svg.png' alt='pic'>
+            <p class='count' id='countLikes' data-id=${this._id}>${this.likes}</p></div>
+          `;
+    let likeBtn = node.querySelector("picLikes");
+    likeBtn.addEventListener("click", this.addLike);
+    div.prepend(node);
+  }
+  addLike() {
+    this.likes++;
+    const like = document.querySelector(`[data-id="${this._id}"] .count`);
+    like.innerHTML = this.likes;
+
+    myObj.forEach((post) => {
+      if (post.id !== this.id) {
+        post.likes = this.likes;
+      }
+    });
+    localStorage.setItem("user", JSON.stringify(myObj));
+  }
+
+  
+}
+
+// class Likes{
+//     constructor(onClick) {
+//         this.likesCount = 0;
+//         this.el = null;
+
+//         this.onClick = onClick;
+//     }
+
+//     Build() {
+//         let likesBlock = document.createElement('div');
+
+//         likesBlock.innerHTML = `
+//             <a class="likes">
+//                 <i class="far fa-heart"></i>
+//                 <span class="counter"> Likes ${this.likesCount} </span>
+//             </a>
+//         `;
+
+//         this.AddEvents(likesBlock);
+
+//         this.el = likesBlock;
+
+//         return this.el;
+//     }
+
+//     AddEvents(el) {
+//         el.querySelector('.likes').addEventListener('click', () => {
+//             el.querySelector('.counter').innerHTML = `Likes: ${++this.likesCount}`;
+//             this.onClick(this.likesCount);
+//         });
+//     }
+
+//     SetCount(value) {
+//         this.el.querySelector('.counter').innerHTML = `Likes: ${value}`;
+//         this.likesCount = value;
+//     }
+// }
+
+let localUsers = localStorage.getItem("user");
+myObj =
+  localUsers !== null
+    ? JSON.parse(localUsers).map(
+        (item) => new Post(item._id, item.title, item.body, item.likes)
+      )
+    : [];
+
+function getRandomId() {
+  let id = Math.floor(Math.random() * 1000) + 500;
+  return id;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const inputTitle = document.getElementById("titleInput"),
+    inputAbout = document.getElementById("aboutTextArea"),
+    btnSend = document.getElementById("sendForm");
+
+  if (localStorage.getItem("user") === null) {
+    console.log("we are ready,local is empty");
+  }
+
+  btnSend.addEventListener("click", function (e) {
+    e.preventDefault();
+    let inputTitleValue = inputTitle.value;
+    let inputAboutValue = inputAbout.value;
+    new Post(getRandomId(), inputTitleValue, inputAboutValue).render();
+    console.log(myObj);
+    localStorage.setItem("user", JSON.stringify(myObj));
+  });
+});
+myObj.map((item) => item.render());
+console.log(myObj);
+
+const delay = (ms) => {
+  return new Promise((r) => setTimeout(() => r(), ms));
+};
+
+const url = "https://jsonplaceholder.typicode.com/posts";
+
+async function fetchAsyncPosts() {
+  console.log("Fetch toDo started...");
+  try {
+    await delay(700);
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log("data", data);
+    localStorage.setItem('user',JSON.stringify(data));
+    new Post(getRandomId(), data.title, data.body).render();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+loadPostsBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  fetchAsyncPosts();
+  
+});
+
+    </script>
+</body>
+</html>

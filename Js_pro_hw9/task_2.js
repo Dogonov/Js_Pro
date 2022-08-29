@@ -11,3 +11,38 @@
 
 
 */
+
+document.addEventListener("DOMContentLoaded", () => {
+    var form = document.querySelector("#form");
+    var btnExit = document.querySelector("#btnExit");
+
+    btnExit.addEventListener("click", () => {
+        localStorage.clear();
+    })
+
+    if (localStorage.getItem("userName")) {
+        form.classList.add("hidden");
+        var userNameLogin = localStorage.getItem("userName")
+        alert(`Hello ${userNameLogin}`);
+        return;
+    } else {
+        form.classList.remove("hidden")
+    }
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        var userName = form.userName.value;
+        var userPassword = form.userPassword.value;
+
+        if (userName !== "admin@example.com" || userPassword !== "12345678") {
+            alert("Error");
+            return;
+        }
+
+        localStorage.setItem("userName", form.userName.value);
+        localStorage.setItem("userPassword", form.userPassword.value);
+    })
+
+
+});
