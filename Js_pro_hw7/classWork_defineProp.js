@@ -25,23 +25,38 @@
     - бонус, створити конструктор суперздатностей -> new Spell (name, spellFunc);
 */
 
-  class SuperDude {
-    
+class SuperDude {
+  constructor(name, powers) {
+    this.name = name;
+    this.powers = powers;
+
+    Object.defineProperty(this, 'name', {
+      value: this.name,
+      writable: false
+    });
+
+    this.powers.forEach(item => {
+      Object.defineProperty(this, item.name, {
+        value: () => console.log(item.spell()),
+        writable: false
+      })
+    })
   }
+}
 
-  let superPowers = [
-    { name:'Invisibility', spell: function(){ return `${this.name} hide from you`} },
-    { name:'superSpeed', spell: function(){ return `${this.name} running from you`} },
-    { name:'superSight', spell: function(){ return `${this.name} see you`} },
-    { name:'superFroze', spell: function(){ return `${this.name} will froze you`} },
-    { name:'superSkin',  spell: function(){ return `${this.name} skin is unbreakable`} },
-  ];
+let superPowers = [
+  { name: 'Invisibility', spell: function () { return `${this.name} hide from you` } },
+  { name: 'superSpeed', spell: function () { return `${this.name} running from you` } },
+  { name: 'superSight', spell: function () { return `${this.name} see you` } },
+  { name: 'superFroze', spell: function () { return `${this.name} will froze you` } },
+  { name: 'superSkin', spell: function () { return `${this.name} skin is unbreakable` } },
+];
 
-  let Luther = new Dude('Luther', superPowers);
-      // Тестування: Методи повинні працювати та виводити повідомлення.
-      Luther.superSight();
-      Luther.superSpeed();
-      Luther.superFroze();
-      Luther.Invisibility();
-      Luther.superSkin();
+let Luther = new SuperDude('Luther', superPowers);
+// Тестування: Методи повинні працювати та виводити повідомлення.
+Luther.superSight();
+Luther.superSpeed();
+Luther.superFroze();
+Luther.Invisibility();
+Luther.superSkin();
 
