@@ -26,7 +26,7 @@ window.addEventListener("load", function () {
 
         toDoList.appendChild(listItem);
 
-        fetch("https://task5-hw9-default-rtdb.firebaseio.com/toDoList.json", {
+        fetch("https://js-hw-48bc0-default-rtdb.firebaseio.com/test.json", {
             method: "POST",
             body: JSON.stringify(itemText)
         })
